@@ -3,6 +3,7 @@ import productData from '../productData';
 
 const initialState = {
     cart: [],
+    favourite: [],
     items: productData,
     totalQuantity: 0,
     totalPrice: 0
@@ -65,9 +66,19 @@ const sliceFun = createSlice({
                 }
                 return item;
             })
+        },
+        addToFav:(state,action)=>{
+            let find = state.favourite.findIndex((item)=>item.id == action.payload.id);
+            if(find >= 0){
+                state.favourite[find].quantity += 1;
+            }else{
+                state.favourite.push(action.payload);
+            }
+            
         }
+
     }
 })
 
-export const {addToCart, getCartTotal, removeItem, increaseItemQuantity, decreaseItemQuantity} = sliceFun.actions;
+export const {addToCart, addToFav, getCartTotal, removeItem, increaseItemQuantity, decreaseItemQuantity} = sliceFun.actions;
 export default sliceFun.reducer;

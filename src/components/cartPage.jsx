@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCartTotal, removeItem, increaseItemQuantity, decreaseItemQuantity } from '../features/slice';
+import { getCartTotal, addToFav, removeItem, increaseItemQuantity, decreaseItemQuantity } from '../features/slice';
 
 const CartPage = () => {
 
@@ -12,7 +12,7 @@ const CartPage = () => {
 
       useEffect(()=>{
         dispatch(getCartTotal());
-      },[cart])
+      },[cart]);
 
       
 
@@ -58,6 +58,15 @@ const CartPage = () => {
                         >
                           <i className="fas fa-trash"></i>
                         </button>
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm me-1 mb-2"
+                          data-mdb-toggle="tooltip"
+                          title="fav item"
+                          onClick={()=>dispatch(addToFav(data))}
+                        >
+                          <i class="fa-regular fa-heart"></i>
+                        </button>
                       </div>
 
                       <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
@@ -97,7 +106,7 @@ const CartPage = () => {
                         </div>
 
                         <p className="text-start text-md-center">
-                          <strong>{data.price}</strong>
+                          <strong>${data.price}</strong>
                         </p>
                       </div>
                       <hr className="my-4" />
@@ -123,7 +132,7 @@ const CartPage = () => {
                         <strong>Total amount</strong>
                       </div>
                       <span>
-                        <strong>{totalPrice}</strong>
+                        <strong>${totalPrice}</strong>
                       </span>
                     </li>
                   </ul>

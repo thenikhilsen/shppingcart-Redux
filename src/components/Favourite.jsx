@@ -1,16 +1,12 @@
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBCol, MDBContainer, MDBRow } from 'mdb-react-ui-kit'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from '../features/slice'
+import { useDispatch, useSelector } from 'react-redux'
 
+const Favourite = () => {
 
-const ProductCard = () => {
-
-  const data = useSelector((c)=>{
-    return c.cartItems.items;
-  })
-
-  const dispatch = useDispatch();
+    const { favourite } = useSelector((item)=>item.cartItems);
+    const dispatch = useDispatch();
 
   return (
     <div className=''>
@@ -18,7 +14,7 @@ const ProductCard = () => {
        <MDBRow className='sectionOfItems'>
         
         {
-          data.map((item)=>(
+            favourite.map((item)=>(
             <MDBCol size='4' className='col'>
             <MDBCard className='item'>
                   <MDBCardImage src={item.img} className="sizeOfImage" alt="Fissure in Sandstone"/>
@@ -38,4 +34,4 @@ const ProductCard = () => {
   )
 }
 
-export default ProductCard
+export default Favourite

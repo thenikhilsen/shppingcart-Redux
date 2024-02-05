@@ -7,7 +7,7 @@ import { getCartTotal } from '../features/slice'
 
 const Navbar = () => {
 
-  const {cart, totalQuantity} = useSelector((data)=>data.cartItems);
+  const {cart, totalQuantity, favourite} = useSelector((data)=>data.cartItems);
 
   const dispatch = useDispatch();
 
@@ -21,6 +21,7 @@ const Navbar = () => {
        <MDBContainer fluid>
             <MDBNavbarBrand>Navbar</MDBNavbarBrand>
             <Link to='/'>All Product</Link>
+            <Link to='/favourite'>Favourite ({favourite.length})</Link>
             <Link to='/cart'><MDBBtn color='dark'>Cart ({totalQuantity})</MDBBtn></Link>
        </MDBContainer>
      </MDBNavbar>      
